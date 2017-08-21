@@ -34,6 +34,12 @@ namespace DotNetCore110
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var str1 = CoreClassLibrary.Class1.returnStr();
+            var str2 = StandardClassLib.Class1.returnStr();
+            if (str1 != str2)
+            {
+                throw new InvalidOperationException("failed to load lib");
+            }
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
